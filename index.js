@@ -23,7 +23,7 @@ inquirer
         },
         {
             type: 'input',
-            name: 'shape-color',
+            name: 'shapeColor',
             message: 'Enter the color of the shape. You may enter a color keyword or a hexidecimal number.'
         }
     ])
