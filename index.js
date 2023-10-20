@@ -6,12 +6,12 @@ inquirer
         {
             type: 'input',
             name: 'text',
-            message: 'Enter text to be displayed in logo. Cannot be more than 3 characters long.'
-
+            message: 'Enter text to be displayed in logo. Cannot be more than 3 characters long.',
+            maxLength: 3
         },
         {
             type: 'input',
-            name: 'color',
+            name: 'textColor',
             message: 'Enter the color of the text. You may enter a color keyword or a hexadecimal number.'
 
         },
@@ -32,7 +32,11 @@ inquirer
     .then((answers) => {
         console.log(answers);
         console.log('Generated logo.svg');
-    });
+    })
+
+    .catch((error) => {
+        console.log(error);
+    })
 
 
 
