@@ -19,8 +19,7 @@ function writeToFile(fileName, fileData) {
       err ? console.log(err) : console.log('Generated logo.svg'))
 };
 
-
-
+// Inquire prompts containing the questions asked for user inpiut.
 inquirer
     .prompt([
         {
@@ -46,7 +45,7 @@ inquirer
             message: 'Enter the color of the shape. You may enter a color keyword or a hexidecimal number.'
         }
     ])
-
+    // Defines what to do with the data received
     .then((answers) => {
 
         let logoText = answers.text.toUpperCase();
@@ -57,6 +56,7 @@ inquirer
         console.log('Shape: ', answers.shape);
         console.log('Shape color: ', shapeColor);
 
+        // Use switch case to check which shape the user selected
         switch (answers.shape) {
             case 'Circle':
                 answers.shape = new Circle(answers.shapeColor);
@@ -70,8 +70,6 @@ inquirer
                 default:
                     return;
         }
-        
-        console.log('Shape code after switch case: ', answers.shape.renderShape());
 
         // Checks to make sure user didn't enter more than 3 characters for logo text
         if(answers.text.length < 4){
@@ -82,13 +80,13 @@ inquirer
             return;
         }
 
+        // Declares fileData and assigns the value of the svg which is a function that returns svg code
         let fileData = svg(answers.shape.renderShape(), logoText, textColor);
-
+        // Writes the logo.svg file with the svg code returned from the svg function 
         writeToFile('logo.svg', fileData);
     })
 
-
-
+    // Logs error if there is an error
     .catch((error) => {
         console.log(error);
     });
